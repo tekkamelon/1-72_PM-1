@@ -1,5 +1,4 @@
-turret_bottom=19/2;
-turret_top=15/2;
+turret_bottom=19/2; turret_top=15/2;
 ring_height=2;
 $fn=35;
 
@@ -8,13 +7,13 @@ module target(){
 	cylinder(h=9, r1=turret_bottom, r2=turret_top);
 	//ターレットリング
 	translate([0,0,-ring_height]){
-		cylinder(h=ring_height, d=14.5);
+		cylinder(h=ring_height, r=14.5/2);
 	}
 }
 
 module tool(){
 	translate([0,0,-ring_height]){
-		cylinder(h=ring_height, d=12.5);
+		cylinder(h=ring_height, r=12.5/2);
 	}
 }
 
