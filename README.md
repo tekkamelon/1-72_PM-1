@@ -7,3 +7,7 @@
 
 ## turret
 砲塔パーツ
+	
+	- turret.scad
+
+	- turret.stl

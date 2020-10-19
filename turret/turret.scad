@@ -6,7 +6,7 @@ rivet_number=24;
 r=turret_bottom-0.15; //リベットを円周上に並べる際の半径
 
 //砲塔本体
-module turm($fn=55){
+module turm($fn=65){
 	cylinder(h=9, r1=turret_bottom, r2=turret_top);
 }
 
@@ -22,12 +22,12 @@ module rivet($fn=8){
 
 //ターレットリング
 module ring($fn=ring_polygon){
-	translate([0,0,-ring_height]){
+	translate([0, 0, -ring_height]){
 		cylinder(h=ring_height, r=14.5/2);
 	}
 }
 
-//本体とリング,リベットを結合
+//本体とリング, リベットを結合
 module target(){
 	union(){
 		turm();
@@ -38,7 +38,7 @@ module target(){
 
 //内部の空洞化
 module tool($fn=ring_polygon/2){
-	translate([0,0,-ring_height]){
+	translate([0, 0, -ring_height]){
 		cylinder(h=ring_height, r=12.5/2);
 	}
 	cylinder(h=7, r1=12.5/2, r2=turret_top-3);
