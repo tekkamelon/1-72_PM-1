@@ -10,6 +10,15 @@ module turm($fn=65){
 	cylinder(h=9, r1=turret_bottom, r2=turret_top);
 }
 
+//ガンポート
+//module gunport(){
+//	translate(){
+//		rotate(){
+//			cylinder();
+//		}
+//	}
+//}
+
 //リベット
 module rivet($fn=8){
 	for(i=[0:rivet_number-1]){
