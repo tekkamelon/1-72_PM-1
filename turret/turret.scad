@@ -11,13 +11,18 @@ module turm($fn=65){
 }
 
 //ガンポート
-/* module gunport(){ */
+module gunport($fn=12){
 	translate([3.5, 4, 5]){
 		rotate([0, 90, 0]){
-#			cylinder(h=5, r=1.5, $fn=12);
+			cylinder(h=5, r=1.5);
 		}
 	}
-/* } */
+	translate([3.5, -4, 5]){
+		rotate([0, 90, 0]){
+			cylinder(h=5, r=1.5);
+		}
+	}
+}
 
 //リベット
 module rivet($fn=8){
@@ -42,7 +47,7 @@ module target(){
 		turm();
 		rivet();
 		ring();
-		/* gunport(); */
+		gunport();
 	}
 }
 
