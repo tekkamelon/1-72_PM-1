@@ -12,14 +12,11 @@ module turm($fn=65){
 
 //ガンポート
 module gunport($fn=12){
-	translate([3.5, 4, 5]){
-		rotate([0, 90, 0]){
-			cylinder(h=5, r=1.5);
-		}
-	}
-	translate([3.5, -4, 5]){
-		rotate([0, 90, 0]){
-			cylinder(h=5, r=1.5);
+	for(y=[-4:8:4]){
+		translate([3.5, y, 5]){
+			rotate([0, 90, 0]){
+				cylinder(h=5, r=1.5);
+			}
 		}
 	}
 }
