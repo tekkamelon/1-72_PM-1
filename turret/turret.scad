@@ -11,11 +11,12 @@ module turm($fn=65){
 }
 
 //ガンポート
-module gunport($fn=12){
-	for(y=[-4:8:4]){
-		translate([3.5, y, 5]){
+module gunport(gunport_y=3, $fn=12){
+	color([0.2, 0.6, 0.2])
+	for(y=[-gunport_y:gunport_y*2:gunport_y]){
+		translate([3.5, y, 9/2]){
 			rotate([0, 90, 0]){
-				cylinder(h=5, r=1.5);
+				cylinder(h=5, r=1.6);
 			}
 		}
 	}
@@ -50,10 +51,12 @@ module target(){
 
 //内部の空洞化
 module tool($fn=ring_polygon/2){
+	//ターレットリング
 	translate([0, 0, -ring_height]){
 		cylinder(h=ring_height, r=12.5/2);
 	}
-	cylinder(h=7, r1=12.5/2, r2=turret_top-3);
+	//砲塔内部
+	cylinder(h=7.5, r1=12.5/2, r2=turret_top-3);
 }
 
 //targetからtoolを減算
