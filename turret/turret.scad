@@ -39,7 +39,7 @@ module ring($fn=ring_polygon){
 	}
 }
 
-//本体とリング, リベットを結合
+//本体とリング, リベット,ガンポートを結合
 module target(){
 	union(){
 		turm();
@@ -50,13 +50,15 @@ module target(){
 }
 
 //内部の空洞化
-module tool($fn=ring_polygon/2){
+module tool($fn=ring_polygon/2, turret_thickness=1){
 	//ターレットリング
 	translate([0, 0, -ring_height]){
-		cylinder(h=ring_height, r=12.5/2);
+		cylinder(h=ring_height+turret_thickness, r=12.5/2);
 	}
 	//砲塔内部
-	cylinder(h=7.5, r1=12.5/2, r2=turret_top-3);
+	translate([0, 0, turret_thickness]){
+		cylinder(h=6.5, r1=turret_bottom-turret_thickness, r2=turret_top-turret_thickness);
+	}
 }
 
 //targetからtoolを減算
