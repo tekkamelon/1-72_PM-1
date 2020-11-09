@@ -5,9 +5,17 @@ ring_polygon=24;
 rivet_number=24;
 r=turret_bottom-0.15; //リベットを円周上に並べる際の半径
 
-//砲塔本体
-module turm($fn=65){
+//砲塔及びリベット
+module turm($fn=70){
+	//砲塔本体
 	cylinder(h=9, r1=turret_bottom, r2=turret_top);
+	//リベット
+	for(i=[0:rivet_number-1]){
+		a=i*(360/rivet_number);	
+		translate([r*cos(a), r*sin(a), 0.65]){
+			sphere(0.3, $fn=8); //リベットの半径
+		}
+	}
 }
 
 //ガンポート
@@ -18,16 +26,6 @@ module gunport(gunport_y=3, $fn=12){
 			rotate([0, 90, 0]){
 				cylinder(h=5, r=1.6);
 			}
-		}
-	}
-}
-
-//リベット
-module rivet($fn=8){
-	for(i=[0:rivet_number-1]){
-		a=i*(360/rivet_number);	
-		translate([r*cos(a), r*sin(a), 0.65]){
-			sphere(0.3); //リベットの半径
 		}
 	}
 }
@@ -43,7 +41,6 @@ module ring($fn=ring_polygon){
 module target(){
 	union(){
 		turm();
-		rivet();
 		ring();
 		gunport();
 	}
