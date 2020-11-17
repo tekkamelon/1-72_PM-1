@@ -19,7 +19,7 @@ module turm($fn=70){
 }
 
 //ガンポート
-module gunport(gunport_y=3, $fn=12){
+module gunport(gunport_y=3, $fn=30){
 	color([0.2, 0.6, 0.2])
 	for(y=[-gunport_y:gunport_y*2:gunport_y]){
 		translate([3.5, y, 9/2]){
