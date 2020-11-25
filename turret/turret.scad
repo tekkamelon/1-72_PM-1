@@ -21,10 +21,19 @@ module turm($fn=70){
 //ガンポート
 module gunport(gunport_y=3, $fn=30){
 	color([0.2, 0.6, 0.2])
-	for(y=[-gunport_y:gunport_y*2:gunport_y]){
-		translate([3.5, y, 9/2]){
-			rotate([0, 90, 0]){
-				cylinder(h=5, r=1.6);
+	difference(){
+		for(y=[-gunport_y:gunport_y*2:gunport_y]){
+			translate([3.6, y, 9/2]){
+				rotate([0, 90, 0]){
+					cylinder(h=5, r=1.6);
+				}
+			}
+		}
+		for(y=[-gunport_y:gunport_y*2:gunport_y]){
+			translate([8.35, y, 9/2]){
+				rotate([0, 90, 0]){
+					cylinder(h=1, r=0.8);
+				}
 			}
 		}
 	}
