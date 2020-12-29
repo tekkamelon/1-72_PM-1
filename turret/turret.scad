@@ -2,11 +2,9 @@ turret_bottom=19/2;
 turret_top=15/2;
 ring_height=2;
 ring_polygon=24;
-rivet_number=24;
-r=turret_bottom-0.15; //リベットを円周上に並べる際の半径
 
 //砲塔及びリベット
-module turm($fn=70){
+module turm($fn=70, r=turret_bottom-0.15, rivet_number=24){  //リベットを円周上に並べる際の半径
 	//砲塔本体
 	cylinder(h=9, r1=turret_bottom, r2=turret_top);
 	//リベット
