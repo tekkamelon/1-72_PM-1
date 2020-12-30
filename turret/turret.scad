@@ -3,11 +3,17 @@ turret_top=15/2;
 ring_height=2;
 ring_polygon=24;
 
+module turm_basic(turm_h, turm_r1, turm_r2){
+	cylinder(h=turm_h, r1=turm_r1, r2=turm_r2);
+}
+
 //砲塔及びリベット
-module turm($fn=70, r=turret_bottom-0.15, rivet_number=24){  //リベットを円周上に並べる際の半径
+module turm($fn=70){  //リベットを円周上に並べる際の半径
 	//砲塔本体
-	cylinder(h=9, r1=turret_bottom, r2=turret_top);
-	//リベット
+	turm_basic(9, turret_bottom, turret_top);
+}
+
+module rivet(r=turret_bottom-0.15, rivet_number=24){
 	for(i=[0:rivet_number-1]){
 		a=i*(360/rivet_number);	
 		translate([r*cos(a), r*sin(a), 0.65]){
@@ -15,7 +21,6 @@ module turm($fn=70, r=turret_bottom-0.15, rivet_number=24){  //リベットを�
 		}
 	}
 }
-
 //ガンポートの基本部分
 module gunport_basic(gunport_y, gunport_r, gunport_height, translate_x, cylinder_height, $fn=30){
 	for(y=[-gunport_y:gunport_y*2:gunport_y]){
@@ -57,6 +62,7 @@ module target(){
 		ring();
 		gunport();
 		barrel();
+		rivet();
 	}
 }
 
@@ -68,7 +74,7 @@ module tool($fn=ring_polygon/2, turret_thickness=1){
 	}
 	//砲塔内部
 	translate([0, 0, turret_thickness]){
-		cylinder(h=6.5, r1=turret_bottom-turret_thickness, r2=turret_top-turret_thickness);
+		turm_basic(6.5, turret_bottom-turret_thickness, turret_top-turret_thickness);
 	}
 }
 
