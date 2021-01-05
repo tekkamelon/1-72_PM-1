@@ -29,11 +29,13 @@ module gunport_basic(gunport_y, gunport_r, gunport_height, translate_x, cylinder
 }
 
 //ガンポートのリベット
-for(y=[-3:3*2:3]){
-	translate([8, y, 5]){
-		rotate([90, 0, 0]){
-			rotate([0, 90, 0]){
-				rivet_basic(1.35, 6, 0.65, 0.2); //リベット
+module gunport_rivet(){
+	for(y=[-3:3*2:3]){
+		translate([8, y, 5]){
+			rotate([90, 0, 0]){
+				rotate([0, 90, 0]){
+					rivet_basic(1.35, 6, 0.65, 0.2); //リベット
+				}
 			}
 		}
 	}
@@ -71,6 +73,7 @@ module target(){
 		turret();
 		ring();
 		barrel();
+		gunport_rivet();
 	}
 }
 
