@@ -7,6 +7,7 @@ ring_polygon=24;
 module turm_basic(turm_h, turm_r1, turm_r2){
 	cylinder(h=turm_h, r1=turm_r1, r2=turm_r2);
 }
+
 //リベット基本部分
 module rivet_basic(rivet_r, rivet_number, rivet_height, sphere_r){
 	for(i=[0:rivet_number-1]){
@@ -41,7 +42,7 @@ module gunport_rivet(){
 	}
 }
 
-//基本部分の結合
+//砲塔部分のモデリング
 module turret(r=turret_bottom-0.15, rivet_number=24){
 	turm_basic(9, turret_bottom, turret_top, $fn=70); //砲塔本体
 	rivet_basic(r, 24, 0.65, 0.3); //リベット
@@ -58,7 +59,11 @@ module barrel($fn=12){
 			cylinder(h=15, r=0.6);
 		}
 	}
+	translate([8.65, -3, 5]){ //銃身基部
+		sphere(r=1.8/2-0.05, $fn=30);
+	}
 }
+
 
 //ターレットリング
 module ring($fn=ring_polygon){
