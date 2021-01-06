@@ -13,7 +13,7 @@ module rivet_basic(rivet_r, rivet_number, rivet_height, sphere_r){
 	for(i=[0:rivet_number-1]){
 		a=i*(360/rivet_number);	
 		translate([rivet_r*cos(a), rivet_r*sin(a), rivet_height]){
-			sphere(sphere_r, $fn=8); //リベットの半径
+			sphere(sphere_r, $fn=10); //リベットの半径
 		}
 	}
 }
@@ -35,7 +35,7 @@ module gunport_rivet(){
 		translate([8, y, 5]){
 			rotate([90, 0, 0]){
 				rotate([0, 90, 0]){
-					rivet_basic(1.35, 6, 0.65, 0.2); //リベット
+					rivet_basic(1.5, 6, 0.65, 0.25); //リベット
 				}
 			}
 		}
@@ -53,14 +53,14 @@ module turret(r=turret_bottom-0.15, rivet_number=24){
 }
 
 //銃身
-module barrel($fn=12){
+module barrel(){
 	translate([3.6, -3, 5]){
 		rotate([0, 90, 0]){
-			cylinder(h=15, r=0.6);
+			cylinder(h=15, r=0.6, $fn=30);
 		}
 	}
 	translate([8.65, -3, 5]){ //銃身基部
-		sphere(r=1.8/2-0.05, $fn=30);
+		sphere(r=1.8/2-0.05, $fn=35);
 	}
 }
 
@@ -82,14 +82,17 @@ module target(){
 	}
 }
 
-//内部の空洞化用モジュール
+//減算用モジュール
 module tool($fn=ring_polygon/2, turret_thickness=1){
-	//ターレットリング
-	translate([0, 0, -ring_height]){
+	translate([17.5, -3, 5]){ //マズル
+		rotate([0, 90, 0]){
+			cylinder(h=3, r=0.3, $fn=10);
+		}
+	}
+	translate([0, 0, -ring_height]){ //ターレットリング
 		cylinder(h=ring_height+turret_thickness, r=12.5/2);
 	}
-	//砲塔内部
-	translate([0, 0, turret_thickness]){
+	translate([0, 0, turret_thickness]){ //砲塔内部
 		turm_basic(6.5, turret_bottom-turret_thickness, turret_top-turret_thickness);
 	}
 }
