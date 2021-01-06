@@ -52,14 +52,14 @@ module turret(r=turret_bottom-0.15, rivet_number=24){
 	}
 }
 
-//銃身
+//砲身
 module barrel(){
 	translate([3.6, -3, 5]){
 		rotate([0, 90, 0]){
 			cylinder(h=15, r=0.6, $fn=30);
 		}
 	}
-	translate([8.65, -3, 5]){ //銃身基部
+	translate([8.65, -3, 5]){ //砲身基部
 		sphere(r=1.8/2-0.05, $fn=35);
 	}
 }
