@@ -53,7 +53,17 @@ module turret(r=turret_bottom-0.15, rivet_number=24, r=1.8, h=5, ch=5){
 	difference(){
 		// ガンポート
 		gunport_func(3, r, h, 3.7, ch, $fn=30);
-		gunport_func(3, r/2, h, 8.35, 1, $fn=30);
+		gunport_func(3, r/2, h, 8.5, 1, $fn=30);
+	}
+}
+
+// ペリスコープ
+difference(){
+	translate([2, 4, turret_top+1.3]){
+		turm_func(1.2, 1, 1, $fn=30);
+	}
+	translate([3, 4, turret_top+2.5]){
+		cube(size=[1, 1.2, 1], center=true);
 	}
 }
 
