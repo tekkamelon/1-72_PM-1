@@ -59,9 +59,18 @@ module turret(r=turret_bottom-0.15, rivet_number=24, r=1.8, h=5, ch=5){
 
 // ペリスコープ
 difference(){
-	translate([2, 4, turret_top+1.3]){
-		turm_func(1.2, 1, 1, $fn=30);
+	// 本体
+	union(){
+		// 上部
+		translate([2, 4, turret_top+1.3]){
+			turm_func(1.2, 1, 1, $fn=30);
+		}
+		// 基部
+		translate([2, 4, turret_top+1.3]){
+			turm_func(0.5, 1.5, 1.2, $fn=30);
+		}
 	}
+	// 穴
 	translate([3, 4, turret_top+2.5]){
 		cube(size=[1, 1.2, 1], center=true);
 	}
@@ -79,6 +88,7 @@ module turret_rivet(){
 		}
 	}
 }
+
 // 砲身
 module barrel(){
 	translate([3.6, -3, 5]){
