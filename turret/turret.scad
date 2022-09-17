@@ -99,7 +99,7 @@ module barrel(){
 		}
 	}
 	translate([8.65, -3, 5]){ // 砲身基部
-		sphere(r=1.8/2-0.05, $fn=35);
+		sphere(r=1, $fn=35);
 	}
 }
 
