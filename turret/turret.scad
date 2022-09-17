@@ -31,29 +31,31 @@ module gunport_func(gunport_y, gunport_r, gunport_height, translate_x, cylinder_
 	}
 }
 
-// ガンポートのリベット
-module gunport_rivet(){
-	for(y=[-3:3*2:3]){
-		translate([8, y, 5]){
-			rotate([rotate_anlge, 0, 0]){
-				rotate([0, rotate_anlge, 0]){
-					rivet_func(1.4, 6, 0.65, 0.25); // リベット
-				}
-			}
-		}
-	}
-}
-
 // 砲塔部分のモデリング
 module turret(r=turret_bottom-0.15, rivet_number=24, r=1.8, h=5, ch=5){
 	// 砲塔本体
 	turm_func(9, turret_bottom, turret_top, $fn=80); 
+	// 砲塔のリベット
 	rivet_func(r, 24, 0.65, 0.3); // リベット
 
 	difference(){
 		// ガンポート
-		gunport_func(3, r, h, 3.7, ch, $fn=30);
+		gunport_func(3, r+0.2, h, 3.8, ch, $fn=30);
+		// 減算用
 		gunport_func(3, r/2, h, 8.5, 1, $fn=30);
+	}
+}
+
+// ガンポートのリベット
+module gunport_rivet(){
+	for(y=[-3:3*2:3]){
+		translate([8.1, y, 5]){
+			rotate([rotate_anlge, 0, 0]){
+				rotate([0, rotate_anlge, 0]){
+					rivet_func(1.65, 6, 0.65, 0.25); // リベット
+				}
+			}
+		}
 	}
 }
 
@@ -62,8 +64,8 @@ difference(){
 	// 本体
 	union(){
 		// 上部
-		translate([2, 4, turret_top+1.3]){
-			turm_func(1.2, 1, 1, $fn=30);
+		translate([2,4, turret_top+1.4]){
+			turm_func(1.35, 1, 1, $fn=30);
 		}
 		// 基部
 		translate([2, 4, turret_top+1.3]){
@@ -71,12 +73,12 @@ difference(){
 		}
 	}
 	// 穴
-	translate([3, 4, turret_top+2.5]){
-		cube(size=[1, 1.2, 1], center=true);
+	translate([3, 4, turret_top+2.2]){
+		cube(size=[1, 1, 0.6], center=true);
 	}
 }
 
-// ガンポートのリベット
+// 砲塔のリベット
 module turret_rivet(){
 	for(y=[-3:3*2:3]){
 		translate([0, 0, 1]){
@@ -127,8 +129,9 @@ module tool($fn=ring_polygon/2, turret_thickness=1){
 			cylinder(h=3, r=0.3, $fn=10);
 		}
 	}
-	translate([0, 0, -ring_height]){ // ターレットリング
-		cylinder(h=ring_height+turret_thickness, r=12.5/2);
+	// ターレットリング
+	translate([0, 0, -ring_height]){ 
+		cylinder(h=ring_height+turret_thickness, r=12.5/2, $fn=ring_polygon);
 	}
 	translate([0, 0, turret_thickness]){ // 砲塔内部
 		turm_func(6.5, turret_bottom-turret_thickness, turret_top-turret_thickness);
