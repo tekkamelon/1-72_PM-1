@@ -111,6 +111,27 @@ module ring($fn=ring_polygon){
 	}
 }
 
+
+// 砲塔前面の構造物
+module turret_object(){
+
+	translate([6.5, 0, 7.5]){
+
+
+		rotate([0, -10, 0]){
+
+			cube(size=[3, 2.3, 2], center=true);
+
+		}
+
+	}
+	translate([7, 0, 8.5]){
+
+		cube(size=[4, 2.3, 0.5], center=true);
+
+	}
+
+}
 // 各モジュールを結合
 module target(){
 	union(){
@@ -119,6 +140,7 @@ module target(){
 		barrel();
 		turret_rivet();
 		gunport_rivet();
+		turret_object();
 	}
 }
 
@@ -129,12 +151,15 @@ module tool($fn=ring_polygon/2, turret_thickness=1){
 			cylinder(h=3, r=0.3, $fn=10);
 		}
 	}
+
 	// ターレットリング
 	translate([0, 0, -ring_height]){ 
 		cylinder(h=ring_height+turret_thickness, r=12.5/2, $fn=ring_polygon);
 	}
-	translate([0, 0, turret_thickness]){ // 砲塔内部
-		turm_func(6.5, turret_bottom-turret_thickness, turret_top-turret_thickness);
+
+	// 砲塔内部
+	translate([0, 0, turret_thickness]){ 
+		turm_func(6.5, turret_bottom-turret_thickness, turret_top-turret_thickness, $fn=80);
 	}
 }
 
