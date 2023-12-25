@@ -64,16 +64,16 @@ difference(){
 	// 本体
 	union(){
 		// 上部
-		translate([2,4, turret_top+1.4]){
+		translate([2, 3, turret_top+1.4]){
 			turm_func(1.35, 1, 1, $fn=30);
 		}
 		// 基部
-		translate([2, 4, turret_top+1.3]){
+		translate([2, 3, turret_top+1.3]){
 			turm_func(0.5, 1.5, 1.2, $fn=30);
 		}
 	}
 	// 穴
-	translate([3, 4, turret_top+2.2]){
+	translate([3, 3, turret_top+2.2]){
 		cube(size=[1, 1, 0.6], center=true);
 	}
 }
@@ -161,6 +161,20 @@ module tool($fn=ring_polygon/2, turret_thickness=1){
 	translate([0, 0, turret_thickness]){ 
 		turm_func(6.5, turret_bottom-turret_thickness, turret_top-turret_thickness, $fn=80);
 	}
+
+}
+
+// ハッチ
+translate([-5, 0.8, turret_top+1.4]){
+
+	cube([5, 4.5, 0.3]);
+
+}
+
+translate([-5, -3.85 , turret_top+1.4]){
+
+	cube([5, 4.5, 0.3]);
+
 }
 
 // targetからtoolを減算
