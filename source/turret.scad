@@ -165,17 +165,29 @@ module tool($fn=ring_polygon/2, turret_thickness=1){
 }
 
 // ハッチ
-translate([-5, 0.8, turret_top+1.4]){
+translate([0, 0, turret_top+1.4]){
 
-	cube([5, 4.5, 0.3]);
+	difference(){
 
+
+			color("blue")
+			cube([5, 4.5, 0.3], true);
+
+		//}
+
+		//translate([-4.85, 0.8+0.15, turret_top+1.4]){
+
+			#cube([4.7, 4.2, 0.3], true);
+
+	}
+	 
 }
 
-translate([-5, -3.85 , turret_top+1.4]){
+//translate([-5, -3.85 , turret_top+1.4]){
 
-	cube([5, 4.5, 0.3]);
+	//cube([5, 4.5, 0.3]);
 
-}
+//}
 
 // targetからtoolを減算
 difference(){
